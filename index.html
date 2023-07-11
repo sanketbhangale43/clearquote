@@ -35,14 +35,15 @@
                   "typeName":"SystemSettings"
                 },
                 function(result){
+                  console.log("System Settings")
                   console.log(result)
                 }
               )
 
             // [Step 1] Get the Geo tab logged in user's data
-            console.log("Result for Geo tab's result data") 
             api.getSession(
               function (result) {
+                console.log("Session data") 
                 console.log(result)
                 /*
                 result looks like this
