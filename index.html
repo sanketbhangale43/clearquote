@@ -28,7 +28,7 @@
             // Logs
             console.log("clearquote addin: initialized");
 
-            // Get the Geo tab's user data
+            // [Step 1] Get the Geo tab's user data
             console.log("Result for Geo tab's result data") 
             api.getSession(
               function (result) {
@@ -36,9 +36,22 @@
               }
             )
 
-            // Get the server path
+            // [Step 2] Get the server path
             console.log("Server path (window.location.href) -> " + window.location.href)
             console.log("host name (window.location.hostname) -> " + window.location.hostname)
+
+            // [Step 3] Get device API call
+            api.call(
+              "Get",
+              {
+                "typeName":"Device",
+                "resultsLimit":1,
+              },
+              function (result) {
+                  console.log("Devices")
+                  console.log(result)
+              }
+            );
               
             // Rest
             callback();
