@@ -25,16 +25,33 @@
       geotab.addin.clearquote = function(api, state) {
         return {
           initialize: function(api, state, callback) {
-            console.log("clearquote addin initialized");
+            // Logs
+            console.log("clearquote addin: initialized");
+
+            // Get the Geo tab's user data
+            console.log("Result for Geo tab's result data") 
+            api.getSession(
+              function (result) {
+                console.log(result) 
+              }
+            )
+
+            // Get the server path
+            console.log("Server path (window.location.href) -> " + window.location.href)
+            console.log("host name (window.location.hostname) -> " + window.location.hostname)
+              
+            // Rest
             callback();
           },
 
           focus: function() {
-            console.log("clearquote addin focused");
+            // Logs
+            console.log("clearquote addin: focused");
           },
 
           blur: function() {
-            console.log();
+            // Logs
+            console.log("clearquote addin: blur");
           }
         };
       };
