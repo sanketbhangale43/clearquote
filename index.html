@@ -25,10 +25,10 @@
       geotab.addin.clearquote = function(api, state) {
         return {
           initialize: function(api, state, callback) {
-            // Logs
+            // Will be called only once per access of CQ add-in (***SSO should be performed here only***)
             console.log("clearquote addin: initialized");
 
-            // [Step 1] Get the Geo tab's user data
+            // [Step 1] Get the Geo tab logged in user's data
             console.log("Result for Geo tab's result data") 
             api.getSession(
               function (result) {
@@ -38,9 +38,10 @@
 
             // [Step 2] Get the server path
             console.log("Server path (window.location.href) -> " + window.location.href)
-            console.log("host name (window.location.hostname) -> " + window.location.hostname)
+            console.log("host name (window.location.hostname) -> " + window.location.hostname) // This is need in the api() calls
 
             // [Step 3] Get device API call
+            // Not sure how to check that this call is failed and show a warning error message saying "Incorrect Login Credentials"
             api.call(
               "Get",
               {
@@ -48,9 +49,14 @@
                 "resultsLimit":1,
               },
               function (result) {
-                  console.log("Devices")
-                  console.log(result)
-              }
+                // Log devices
+                console.log("Devices")
+                console.log(result)
+
+                // If this call is success then do CQ backend validation
+
+                // After backend validation success navigate to the landing page
+              },
             );
               
             // Rest
@@ -58,12 +64,12 @@
           },
 
           focus: function() {
-            // Logs
+            // Will be called all the times when user resumes using CQ addin (Can place the CQ add-in landing page's refresh code [***No need to perform SSO again here***])
             console.log("clearquote addin: focused");
           },
 
           blur: function() {
-            // Logs
+            // Will be called when, user navigates to other pages (non CQ Add-in pages) of MyGeoTab
             console.log("clearquote addin: blur");
           }
         };
