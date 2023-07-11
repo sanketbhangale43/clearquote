@@ -32,13 +32,21 @@
             console.log("Result for Geo tab's result data") 
             api.getSession(
               function (result) {
-                console.log(result) 
+                console.log(result)
+                /*
+                result looks like this
+                {
+                  database:"demo_clearquote"
+                  sessionId:"shjMEyp6DwlQaUJyDeivJA"
+                  userName:"eshwar@clearquote.io"
+                }
+                */
               }
             )
 
             // [Step 2] Get the server path
             console.log("Server path (window.location.href) -> " + window.location.href)
-            console.log("host name (window.location.hostname) -> " + window.location.hostname) // This is need in the api() calls
+            console.log("host name (window.location.hostname) -> " + window.location.hostname) // Might be needed in Add-in API calls
 
             // [Step 3] Get device API call
             // Not sure how to check that this call is failed and show a warning error message saying "Incorrect Login Credentials"
@@ -51,7 +59,7 @@
               function (result) {
                 // Log devices
                 console.log("Devices")
-                console.log(result)
+                console.log(result) // Device object is big can not put it here
 
                 // If this call is success then do CQ backend validation
 
