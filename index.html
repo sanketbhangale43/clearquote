@@ -28,18 +28,6 @@
             // Will be called only once per access of CQ add-in (***SSO should be performed here only***)
             console.log("clearquote addin: initialized");
 
-            // API call to get the data base GUID
-            api.call(
-                "Get", 
-                {
-                  "typeName":"SystemSettings"
-                },
-                function(result){
-                  console.log("System Settings")
-                  console.log(result)
-                }
-              )
-
             // [Step 1] Get the Geo tab logged in user's data
             api.getSession(
               function (result) {
@@ -60,25 +48,10 @@
             console.log("Server path (window.location.href) -> " + window.location.href)
             console.log("host name (window.location.hostname) -> " + window.location.hostname) // Might be needed in Add-in API calls
 
-            // [Step 3] Get device API call
-            // Not sure how to check that this call is failed and show a warning error message saying "Incorrect Login Credentials"
-            api.call(
-              "Get",
-              {
-                "typeName":"Device",
-                "resultsLimit":1,
-              },
-              function (result) {
-                // Log devices
-                console.log("Devices")
-                console.log(result) // Device object is big can not put it here
 
-                // If this call is success then do CQ backend validation
+            // Call CQ backend API to authenticate user
 
-                // After backend validation success navigate to the landing page
-              },
-            );
-              
+
             // Rest
             callback();
           },
