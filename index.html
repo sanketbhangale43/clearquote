@@ -14,14 +14,12 @@
 
 
   <body>
-      <iframe class="col-12 vh-100" src="https://cq-uat.web.app/#/pages/home" frameborder="0"></iframe>
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- Custom script -->
     <script type="text/javaScript">
-      console.log("clearquote geotab integration 1.3");
+      console.log("clearquote geotab integration 1.4");
       geotab.addin.clearquote = function(api, state) {
         return {
           initialize: function(api, state, callback) {
@@ -31,7 +29,7 @@
             // [Step 1] Get the Geo tab logged in user's data
             api.getSession(
               function (result) {
-                console.log("Session data") 
+                console.log("clearQuote addin: Session data") 
                 console.log(result)
                 /*
                 result looks like this
@@ -41,16 +39,16 @@
                   userName:"eshwar@clearquote.io"
                 }
                 */
+                
+                const cqWebAppUrl = "https://cq-uat.web.app/login?source=geotab&username=" + result.userName + "&database=" + result.database + "&sectionid=" + result.sessionId + "&hostname=" + window.location.hostname
+                console.log("clearQuote addin: cqWebAppUrl -> " + cqWebAppUrl)
+                var cqIframe = document.createElement("cqIframe");
+                cqIframe.setAttribute("src", cqWebAppUrl);
+                cqIframe.setAttribute("class", "col-12 vh-100");
+                cqIframe.setAttribute("frameborder", 0);
+                document.body.appendChild(cqIframe);
               }
             )
-
-            // [Step 2] Get the server path
-            console.log("Server path (window.location.href) -> " + window.location.href)
-            console.log("host name (window.location.hostname) -> " + window.location.hostname) // Might be needed in Add-in API calls
-
-
-            // Call CQ backend API to authenticate user
-
 
             // Rest
             callback();
