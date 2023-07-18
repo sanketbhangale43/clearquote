@@ -42,7 +42,7 @@
                 }
                 */
                 
-                const cqWebAppUrl = "https://cq-uat.web.app/login?source=geotab&username=" + result.userName + "&database=" + result.database + "&sectionid=" + result.sessionId + "&hostname=" + window.location.hostname
+                const cqWebAppUrl = "https://cq-uat.web.app/login?source=geotab&username=" + result.userName + "&database=" + result.database + "&sessionId=" + result.sessionId + "&hostname=" + window.location.hostname
                 console.log("clearQuote addin: cqWebAppUrl -> " + cqWebAppUrl)
                 var cqIframe = document.createElement("iframe");
                 cqIframe.setAttribute("src", cqWebAppUrl);
