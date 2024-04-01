@@ -59,6 +59,8 @@
           focus: function() {
             // Will be called all the times when user resumes using CQ addin (Can place the CQ add-in landing page's refresh code [***No need to perform SSO again here***])
             console.log("clearquote addin: focused");
+            console.log("getGroupFilter ->", state.getGroupFilter())
+            console.log("getAdvancedGroupFilter ->", state.getAdvancedGroupFilter())
           },
 
           blur: function() {
