@@ -42,7 +42,7 @@
                 }
                 */
                 
-                const cqWebAppUrl = "https://eu.clearquote.io/#/auth/login?source=geotab&username=" + encodeURIComponent(result.userName) + "&databaseName=" + encodeURIComponent(result.database) + "&sessionId=" + encodeURIComponent(result.sessionId) + "&hostName=" + encodeURIComponent(window.location.hostname)
+                const cqWebAppUrl = "https://geotab-uat.web.app/#/auth/login?source=geotab&username=" + encodeURIComponent(result.userName) + "&databaseName=" + encodeURIComponent(result.database) + "&sessionId=" + encodeURIComponent(result.sessionId) + "&hostName=" + encodeURIComponent(window.location.hostname)
                 console.log("clearQuote addin: cqWebAppUrl -> " + cqWebAppUrl)
                 var cqIframe = document.createElement("iframe");
                 cqIframe.setAttribute("id", "CQiframe");
