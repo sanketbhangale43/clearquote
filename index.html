@@ -62,8 +62,7 @@
             console.log("clearquote addin: focused 1.8");
             console.log("getGroupFilter ->", state.getGroupFilter())
             console.log("getAdvancedGroupFilter ->", state.getAdvancedGroupFilter());
-            var cqIframe = document.getElementById("iframe");
-            cqIframe.setAttribute("id", "CQiframe");
+            var cqIframe = document.getElementById("CQiframe");
             cqIframe.contentWindow.postMessage(message, JSON.stringify(state.getGroupFilter()));
             cqIframe.contentWindow.postMessage(message, JSON.stringify(state.getAdvancedGroupFilter()));
           },
