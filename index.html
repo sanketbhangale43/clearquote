@@ -9,7 +9,7 @@
     <title>GeoTab-ClearQuote integration</title>
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   
   </head>
 
 
@@ -17,7 +17,6 @@
     <div id="cqDiv"></div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- Custom script -->
     <script type="text/javaScript">
@@ -42,9 +41,10 @@
                 }
                 */
                 
-                const cqWebAppUrl = "https://eu.clearquote.io/#/auth/login?source=geotab&username=" + encodeURIComponent(result.userName) + "&databaseName=" + encodeURIComponent(result.database) + "&sessionId=" + encodeURIComponent(result.sessionId) + "&hostName=" + encodeURIComponent(window.location.hostname)
+                const cqWebAppUrl = "https://geotab-uat.web.app/#/auth/login?source=geotab&username=" + encodeURIComponent(result.userName) + "&databaseName=" + encodeURIComponent(result.database) + "&sessionId=" + encodeURIComponent(result.sessionId) + "&hostName=" + encodeURIComponent(window.location.hostname)
                 console.log("clearQuote addin: cqWebAppUrl -> " + cqWebAppUrl)
                 var cqIframe = document.createElement("iframe");
+                cqIframe.setAttribute("id", "CQiframe");
                 cqIframe.setAttribute("src", cqWebAppUrl);
                 cqIframe.setAttribute("class", "col-12 vh-100");
                 cqIframe.setAttribute("frameborder", 0);
@@ -63,7 +63,10 @@
             // Will be called all the times when user resumes using CQ addin (Can place the CQ add-in landing page's refresh code [***No need to perform SSO again here***])
             console.log("clearquote addin: focused 1.8");
             console.log("getGroupFilter ->", state.getGroupFilter())
-            console.log("getAdvancedGroupFilter ->", state.getAdvancedGroupFilter())
+            console.log("getAdvancedGroupFilter ->", state.getAdvancedGroupFilter());
+            var cqIframe = document.getElementById("CQiframe");
+            cqIframe.contentWindow.postMessage(JSON.stringify(state.getGroupFilter()), "*");
+            cqIframe.contentWindow.postMessage(JSON.stringify(state.getAdvancedGroupFilter()), "*");
           },
 
           blur: function() {
