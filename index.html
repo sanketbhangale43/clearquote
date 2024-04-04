@@ -63,8 +63,8 @@
             console.log("getGroupFilter ->", state.getGroupFilter())
             console.log("getAdvancedGroupFilter ->", state.getAdvancedGroupFilter());
             var cqIframe = document.getElementById("CQiframe");
-            cqIframe.contentWindow.postMessage(message, JSON.stringify(state.getGroupFilter()));
-            cqIframe.contentWindow.postMessage(message, JSON.stringify(state.getAdvancedGroupFilter()));
+            cqIframe.contentWindow.postMessage(JSON.stringify(state.getGroupFilter()), "*");
+            cqIframe.contentWindow.postMessage(JSON.stringify(state.getAdvancedGroupFilter()), "*");
           },
 
           blur: function() {
