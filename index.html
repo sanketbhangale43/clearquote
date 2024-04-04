@@ -45,6 +45,7 @@
                 const cqWebAppUrl = "https://eu.clearquote.io/#/auth/login?source=geotab&username=" + encodeURIComponent(result.userName) + "&databaseName=" + encodeURIComponent(result.database) + "&sessionId=" + encodeURIComponent(result.sessionId) + "&hostName=" + encodeURIComponent(window.location.hostname)
                 console.log("clearQuote addin: cqWebAppUrl -> " + cqWebAppUrl)
                 var cqIframe = document.createElement("iframe");
+                cqIframe.setAttribute("id", "CQiframe");
                 cqIframe.setAttribute("src", cqWebAppUrl);
                 cqIframe.setAttribute("class", "col-12 vh-100");
                 cqIframe.setAttribute("frameborder", 0);
@@ -60,7 +61,11 @@
             // Will be called all the times when user resumes using CQ addin (Can place the CQ add-in landing page's refresh code [***No need to perform SSO again here***])
             console.log("clearquote addin: focused 1.8");
             console.log("getGroupFilter ->", state.getGroupFilter())
-            console.log("getAdvancedGroupFilter ->", state.getAdvancedGroupFilter())
+            console.log("getAdvancedGroupFilter ->", state.getAdvancedGroupFilter());
+            var cqIframe = document.getElementById("iframe");
+            cqIframe.setAttribute("id", "CQiframe");
+            cqIframe.contentWindow.postMessage(message, JSON.stringify(state.getGroupFilter()));
+            cqIframe.contentWindow.postMessage(message, JSON.stringify(state.getAdvancedGroupFilter()));
           },
 
           blur: function() {
